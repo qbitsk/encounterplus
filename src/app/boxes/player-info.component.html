@@ -1,0 +1,49 @@
+<div class="card" *ngIf="player">
+    <div class="card-header">
+        <h3>{{ player.name }}</h3>
+        <p>Level {{player.level}} {{player.race}} {{player.class}}</p>
+    </div>
+
+    <div class="card-body">
+        <div class="form-group">
+            <img class="img-fluid" src="{{player.imageUrl}}" />
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="number" min="0" max="100" [(ngModel)]="modifVal"
+                    aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
+                <div class="input-group-append" id="button-addon4">
+                    <button class="btn btn-success" (click)="heal(modifVal)"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-danger" (click)="damage(modifVal)"><i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Hit Points</label>
+            <div class="progress" [style.height]="2 + 'rem'">
+                <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(player.hitPoints / player.maxHitPoints * 100) + '%'" [style.height]="2 + 'rem'"
+                    [attr.aria-valuenow]="player.hitPoints" aria-valuemin="0"
+                    [attr.aria-valuemax]="player.maxHitPoints">
+                    {{ player.hitPoints }} / {{ player.maxHitPoints }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Hit Die</label>
+            <div class="progress" [style.height]="1 + 'rem'">
+                <div class="progress-bar bg-primary" role="progressbar"
+                    [style.width]="(player.hitDie / player.maxHitDie * 100) + '%'" [style.height]="1 + 'rem'"
+                    [attr.aria-valuenow]="player.hitDie" aria-valuemin="0" [attr.aria-valuemax]="player.maxHitDie">
+                    {{ player.hitDie }} / {{ player.maxHitDie }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button class="btn btn-primary" (click)="save()">Save</button>
+        <button class="btn btn-danger" (click)="deleteCharacter()">Delete</button>
+    </div>
+</div>

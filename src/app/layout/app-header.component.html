@@ -1,0 +1,29 @@
+<div class="form-group" style="padding-top: 0.5rem;">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="checkbox" [(ngModel)]="autoReconnect" (change)="toggleAutoReconnect()"
+                    id="defaultCheck1">&nbsp;Auto-reconnect
+            </div>
+        </div>
+
+        <input [(ngModel)]="url" type="text" class="form-control" placeholder="wss://encounter-server-websocket/" />
+
+        <div class="input-group-append" *ngIf="!ws">
+            <button class="btn btn-outline-success" type="button" id="button-addon2"
+                (click)="connectToServer()">Connect</button>
+        </div>
+
+        <div class="input-group-append" *ngIf="!!ws">
+            <button class="btn btn-danger" type="button" id="button-addon2"
+                (click)="disconnectFromServer()">Disconnect</button>
+        </div>
+
+        <div class="input-group-append">
+            <button class="btn" [ngClass]="{'btn-outline-primary': !showPlayer, 'btn-primary': showPlayer}" type="button" id="button-addon2"
+                (click)="togglePlayerInfo()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</div>

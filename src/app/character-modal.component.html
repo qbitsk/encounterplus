@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create a new character</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalInstance.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="alert alert-info">
+        There is no character stored in your browser's local storage. Please create your character here.
+    </div>
+
+    <div class="form-group">
+        <label>Player name</label>
+        <input type="text" class="form-control" [(ngModel)]="player.playerName" placeholder="Enter your name" />
+    </div>
+
+    <div class="form-group">
+        <label>Character Name</label>
+        <input type="text" class="form-control" [(ngModel)]="player.name" placeholder="Enter your character's name" />
+    </div>
+
+    <div class="form-group">
+        <label>Character class</label>
+        <select class="form-control" [(ngModel)]="player.class">
+            <option *ngFor="let class of classes" value="{{ class.name }}">{{ class.name }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Character level</label>
+        <select class="form-control" [(ngModel)]="player.level">
+            <option *ngFor="let level of levels" value="{{ level }}">{{ level }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Character race</label>
+        <select class="form-control" [(ngModel)]="player.race">
+            <option *ngFor="let race of races" value="{{ race.name }}">{{ race.name }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Character appearance</label>
+        <input type="text" class="form-control" [(ngModel)]="player.imageUrl"
+            placeholder="Enter image link (URL) here" />
+        <img class="img-fluid" *ngIf="player.imageUrl" [attr.src]="player.imageUrl" />
+        <img class="img-fluid" *ngIf="!player.imageUrl" [attr.src]="defaultImageUrl" />
+    </div>
+
+    <div class="form-group">
+        <label>Hit points</label>
+        <input type="number" class="form-control" [(ngModel)]="player.hitPoints"
+            placeholder="Enter hit points" />
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="save()">Save</button>
+</div>

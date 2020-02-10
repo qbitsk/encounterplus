@@ -1,0 +1,35 @@
+<div id="app" class="container-fluid h-100 d-flex flex-column">
+	<app-header #appHeader (connect)="connect($event)" (disconnect)="disconnect()" (togglePlayerInfoEvent)="togglePlayerInfoEvent()" [connection]="ws" [showPlayer]="showPlayer"></app-header>
+
+	<app-sidebar *ngIf="ws"></app-sidebar>
+
+	<section class="row flex-fill" *ngIf="!!ws">
+		<div [ngClass]="{'col-10': showPlayer, 'col-12': !showPlayer}">
+			<div class="h-100">
+				<canvas #mainCanvas class="h-100 w-100" style="border: 1px solid #000;">
+				</canvas>
+			</div>
+			<div *ngFor="let event of events">
+				Event received: "{{ event.name }}" ({{ event.raw | json }})
+			</div>
+		</div>
+		<div class="col" *ngIf="showPlayer">
+			<player-info #playerInfo></player-info>
+		</div>
+		<router-outlet></router-outlet>
+	</section>
+
+	<section class="container-fluid" *ngIf="!ws">
+		<div class="row">
+			<div class="col-12">
+				<div class="alert alert-warning" role="alert">
+					You must connect to a compatible Encounter+ server first.
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<app-footer></app-footer>
+
+	<!-- <app-log></app-log> -->
+</div>

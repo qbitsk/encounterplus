@@ -27,7 +27,7 @@
     "ng-bootstrap": "^1.6.3",
     "ngx-markdown": "^8.0.2",
     "rxjs": "~6.4.0",
-    "three": "^0.105.2",
+    "three": "^0.125.0",
     "three-full": "^17.1.0",
     "three-orbitcontrols-ts": "^0.1.2",
     "tslib": "^1.9.0",
